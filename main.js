@@ -11,11 +11,12 @@ function setup()
     canvas=createCanvas(380,380);
     canvas.center();
     video=createCapture(VIDEO);
+    video.size(380,380);
     video.hide();
 
     objectDetector= ml5.objectDetector('cocossd' ,modelLoaded);//objectDetector is used to initiallize the cocossd model
     document.getElementById("status").innerHTML= 'status: detecting object'
-    document.getElementById("Number_of_Objects").innerHTML= 'Number of objects: ' + objects.length;
+   
 
 }
 
@@ -66,6 +67,7 @@ function draw()
         objectDetector.detect(video, gotResult);//detect is a function used for object detection and gets back th result
         for(i= 0; i< objects.length; i++)
         {
+            document.getElementById("Number_of_Objects").innerHTML= 'Number of objects: ' + objects.length;
             document.getElementById("status").innerHTML= "Status : Object Detected";
          fill(r, g, b);
          percent= floor(objects[i].confidence*100);
